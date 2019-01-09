@@ -1,0 +1,25 @@
+<h2>Liquids</h2>
+
+<div>
+  <label>Liquid name:
+    <input #liquidName />
+  </label>
+  &#160;
+  <label>Liquid brand:
+    <input #liquidBrand />
+  </label>
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button (click)="add(liquidName.value, liquidBrand.value); liquidName.value=''; liquidBrand.value=''">
+    add
+  </button>
+</div>
+
+<ul class="liquids">
+  <li *ngFor="let liquid of liquids">
+    <a routerLink="/detail/{{liquid.id}}">
+      <span class="badge">{{liquid.id}}</span> {{liquid.name}} | {{liquid.brand}} 
+    </a>
+    <button class="delete" title="delete liquid"
+      (click)="delete(liquid)">x</button>
+  </li>
+</ul>
