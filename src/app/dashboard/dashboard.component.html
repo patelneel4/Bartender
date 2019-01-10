@@ -1,0 +1,11 @@
+<h3>Top Liquids</h3>
+<div class="grid grid-pad">
+  <a *ngFor="let liquid of liquids" class="col-1-4">
+     
+    <div class="module liquid">
+      <h4>{{liquid.name}}</h4>
+    </div>
+  </a>
+</div>
+
+<app-liquid-search></app-liquid-search>

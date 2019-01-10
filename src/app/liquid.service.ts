@@ -56,14 +56,14 @@ export class LiquidService {
   }
 
   /* GET liquides whose name contains search term */
-  searchLiquids(term: string): Observable<Liquid[]> {
-    if (!term.trim()) {
+  searchLiquids(query: string): Observable<Liquid[]> {
+    if (!query.trim()) {
       // if not search term, return empty liquid array.
       return of([]);
     }
-    return this.http.get<Liquid[]>(`${this.liquidsUrl}/?name=${term}`).pipe(
-      tap(_ => this.log(`found liquides matching "${term}"`)),
-      catchError(this.handleError<Liquid[]>('searchliquides', []))
+    return this.http.get<Liquid[]>(`${this.liquidsUrl}/?query=${query}`).pipe(
+      tap(_ => this.log(`found liquids matching "${query}"`)),
+      catchError(this.handleError<Liquid[]>('searchliquids', []))
     );
   }
 
@@ -81,7 +81,7 @@ export class LiquidService {
   /** DELETE: delete the liquid from the server */
   deleteliquid (liquid: Liquid | number): Observable<Liquid> {
     const id = typeof liquid === 'number' ? liquid : liquid.id;
-    const url = `${this.liquidsUrl}/${id}`;
+    const url = `${this.liquidsUrl}/delete/${id}`;
 
     return this.http.delete<Liquid>(url, httpOptions).pipe(
       tap(_ => this.log(`deleted liquid id=${id}`)),

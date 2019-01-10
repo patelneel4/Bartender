@@ -6,6 +6,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LiquidsComponent } from './liquids/liquids.component';
 import { MessagesComponent } from './messages/messages.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { LiquidSearchComponent } from './liquid-search/liquid-search.component';
 
 @NgModule({
   imports: [
@@ -18,7 +20,9 @@ import { MessagesComponent } from './messages/messages.component';
   declarations: [
     AppComponent,
     LiquidsComponent,
-    MessagesComponent
+    MessagesComponent,
+    DashboardComponent,
+    LiquidSearchComponent
   ],
   bootstrap: [AppComponent]
 })
