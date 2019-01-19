@@ -8,4 +8,16 @@
   </a>
 </div>
 
+
+
+<h3>Top Drinks</h3>
+<div class="grid grid-pad">
+  <a *ngFor="let drink of drinks" class="col-1-4">
+     
+    <div class="module drink">
+      <h4>{{drink.name}}</h4>
+    </div>
+  </a>
+</div>
+
 <app-liquid-search></app-liquid-search>
