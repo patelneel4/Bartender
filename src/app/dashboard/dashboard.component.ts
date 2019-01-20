@@ -21,11 +21,11 @@ drinks: Drink[] = [];
 
   getLiquids(): void {
     this.liquidService.getLiquids()
-    .subscribe(liquids => this.liquids = liquids.slice(1, 5));
+    .subscribe(liquids => this.liquids = liquids.slice(0, 4));
   }
   getDrinks(): void {
     this.drinkService.getDrinks()
-    .subscribe(drinks => this.drinks = drinks.slice(1, 5));
+    .subscribe(drinks => this.drinks = drinks.slice(0, 4));
   }
 
 }
