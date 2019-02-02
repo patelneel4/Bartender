@@ -5,6 +5,11 @@
     <label>name:
       <input [(ngModel)]="drink.name" placeholder="name"/>
     </label>
+    <li *ngFor="let ingredient of toArray(drink.ingredients)">
+      <a routerLink="/detail/{{drink.id}}">
+        <span class="badge">{{ingredient.id}}</span> {{ getLiquid(ingredient.liquid) }}| {{ingredient.volume}} 
+      </a>
+      </li>
   </div>
   <button (click)="goBack()">go back</button>
   <button (click)="save()">save</button>

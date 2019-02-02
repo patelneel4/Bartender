@@ -4,6 +4,9 @@ import { Location } from '@angular/common';
 
 import { Drink } from '../drink';
 import { DrinkService } from '../drinks.service';
+import { LiquidService } from '../liquid.service';
+import { Liquid } from '../liquid';
+
 @Component({
   selector: 'app-drink-detail',
   templateUrl: './drink-detail.component.html',
@@ -11,9 +14,11 @@ import { DrinkService } from '../drinks.service';
 })
 export class DrinkDetailComponent implements OnInit {
 @Input() drink: Drink;
+
   constructor(
     private route: ActivatedRoute,
     private drinkService: DrinkService,
+    private liquidService: LiquidService,
     private location: Location,
   ) { }
 
@@ -27,6 +32,13 @@ export class DrinkDetailComponent implements OnInit {
     .subscribe(drink => this.drink = drink);
   }
 
+  getLiquid(id: number): string {
+    let liquid: Liquid;
+    this.liquidService.getLiquid(id)
+    .subscribe(l => liquid = l);
+    return liquid.name;
+  }
+
   goBack(): void {
     this.location.back();
   }
@@ -34,5 +46,9 @@ export class DrinkDetailComponent implements OnInit {
   save(): void {
     this.drinkService.updateDrink(this.drink)
     .subscribe(() => this.goBack());
+  }
+
+  toArray(answers: object) {
+    return Object.keys(answers).map(key => answers[key]);
   }
 }
