@@ -6,6 +6,7 @@ import { Drink } from '../drink';
 import { DrinkService } from '../drinks.service';
 import { LiquidService } from '../liquid.service';
 import { Liquid } from '../liquid';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-drink-detail',
@@ -14,7 +15,7 @@ import { Liquid } from '../liquid';
 })
 export class DrinkDetailComponent implements OnInit {
 @Input() drink: Drink;
-
+@Input() liquid: Liquid;
   constructor(
     private route: ActivatedRoute,
     private drinkService: DrinkService,
@@ -32,11 +33,9 @@ export class DrinkDetailComponent implements OnInit {
     .subscribe(drink => this.drink = drink);
   }
 
-  getLiquid(id: number): string {
-    let liquid: Liquid;
-    this.liquidService.getLiquid(id)
-    .subscribe(l => liquid = l);
-    return liquid.name;
+  getLiquid(id): void {
+   this.liquidService.getLiquid(id)
+    .subscribe(x => this.liquid = x).unsubscribe();
   }
 
   goBack(): void {

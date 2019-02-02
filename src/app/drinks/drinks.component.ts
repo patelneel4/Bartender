@@ -21,5 +21,9 @@ export class DrinksComponent implements OnInit {
     .subscribe(drinks => this.drinks = drinks);
   }
 
+  delete(drink: Drink): void {
+    this.drinkService.deleteDrink(drink.id)
+    .subscribe();
+  }
 
 }
