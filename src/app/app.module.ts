@@ -10,6 +10,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LiquidSearchComponent } from './liquid-search/liquid-search.component';
 import { DrinksComponent } from './drinks/drinks.component';
 import { DrinkDetailComponent } from './drink-detail/drink-detail.component';
+import { PumpsComponent } from './pumps/pumps.component';
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import { DrinkDetailComponent } from './drink-detail/drink-detail.component';
     DashboardComponent,
     LiquidSearchComponent,
     DrinksComponent,
-    DrinkDetailComponent
+    DrinkDetailComponent,
+    PumpsComponent
   ],
   bootstrap: [AppComponent]
 })
