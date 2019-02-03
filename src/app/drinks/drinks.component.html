@@ -16,7 +16,7 @@
 
 <ul class="drinks">
   <li *ngFor="let drink of drinks">
-    <a routerLink="/detail/{{drink.id}}">
+    <a routerLink="/drink-detail/{{drink.id}}">
       <span class="badge">{{drink.id}}</span> {{drink.name}} | {{drink.description}} 
     </a>
     <button class="delete" title="delete drink"

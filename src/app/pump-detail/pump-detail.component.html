@@ -1,0 +1,21 @@
+<div *ngIf="pump">
+  <h2>{{pump.name | uppercase}} Details</h2>
+  <div><span>id: </span>{{pump.id}}</div>
+  <div>
+    <label>name:
+      <input [(ngModel)]="pump.name" placeholder="name" />
+    </label>
+    <br />
+    <label>liquid:
+        <select [(ngModel)]="pump.liquid"> 
+            <option *ngFor="let liquid of liquids" [value]="liquid.id" [selected]="pump.liquidName">{{liquid.name}} - {{liquid.brand}} </option>
+          </select>
+    </label>
+    <br />
+    <label>flowrate:
+      <input [(ngModel)]="pump.flowrate" placeholder="name" />
+    </label>
+  </div>
+  <button (click)="goBack()">go back</button>
+  <button (click)="save()">save</button>
+</div>

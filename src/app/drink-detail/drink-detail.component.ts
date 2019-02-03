@@ -6,7 +6,7 @@ import { Drink } from '../drink';
 import { DrinkService } from '../drinks.service';
 import { LiquidService } from '../liquid.service';
 import { Liquid } from '../liquid';
-import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-drink-detail',

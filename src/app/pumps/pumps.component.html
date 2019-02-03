@@ -2,8 +2,8 @@
 
 <ul class="pumps">
   <li *ngFor="let pump of pumps">
-    <a routerLink="/detail/{{pump.id}}">
-      <span class="badge">{{pump.id}}</span> {{pump.name}} | {{pump.liquidName}} 
+    <a routerLink="/pump-detail/{{pump.id}}">
+      <span class="badge">{{pump.id}}</span> {{pump.name}} | {{pump.liquidName}} | {{ pump.flowrate }}ml/s
     </a>
     <button class="delete" title="delete pump"
       (click)="delete(pump)">x</button>

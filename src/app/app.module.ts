@@ -11,6 +11,7 @@ import { LiquidSearchComponent } from './liquid-search/liquid-search.component';
 import { DrinksComponent } from './drinks/drinks.component';
 import { DrinkDetailComponent } from './drink-detail/drink-detail.component';
 import { PumpsComponent } from './pumps/pumps.component';
+import { PumpDetailComponent } from './pump-detail/pump-detail.component';
 
 @NgModule({
   imports: [
@@ -28,7 +29,8 @@ import { PumpsComponent } from './pumps/pumps.component';
     LiquidSearchComponent,
     DrinksComponent,
     DrinkDetailComponent,
-    PumpsComponent
+    PumpsComponent,
+    PumpDetailComponent
   ],
   bootstrap: [AppComponent]
 })

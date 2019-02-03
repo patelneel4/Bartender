@@ -90,9 +90,9 @@ export class PumpsService {
   }
 
   /** PUT: update the pump on the server */
-  updatepump (pump: Pump): Observable<any> {
+  updatePump (pump: Pump): Observable<Pump> {
     const url = `${this.pumpsUrl}/update`;
-    return this.http.put(url, pump, httpOptions).pipe(
+    return this.http.post<Pump>(url, pump, httpOptions).pipe(
       tap(_ => this.log(`updated pump id=${pump.id}`)),
       catchError(this.handleError<any>('updatepump'))
     );
