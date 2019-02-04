@@ -1,9 +1,18 @@
 <h1>{{title}}</h1>
 <nav>
   <!-- <a routerLink="/dashboard">Dashboard</a> -->
-  <a routerLink="/liquids">Liquids</a>
-  <a routerLink="/drinks">Drinks</a>
-  <a routerLink="/pumps">Pumps</a>
+  <div style="float: left;">
+    <a routerLink="/liquids">Liquids</a>
+    <a routerLink="/drinks">Drinks</a>
+  </div>
+
+  <div style="float: right;">
+    <a routerLink="/pumps">Pumps</a>
+  </div>
+
 </nav>
+
+<hr style="margin-top:50px">
+
 <router-outlet></router-outlet>
 <app-messages></app-messages>

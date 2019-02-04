@@ -2,7 +2,7 @@
   <h2>{{drink.name | uppercase}} Details</h2>
   <div><span>id: </span>{{drink.id}}</div>
   <div>
-    <label>name:
+    <label>Name:
       <input [(ngModel)]="drink.name" placeholder="name"/>
     </label>
     <li *ngFor="let ingredient of drink.ingredients">
