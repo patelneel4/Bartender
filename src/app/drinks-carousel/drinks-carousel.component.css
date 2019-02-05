@@ -1,0 +1,10 @@
+h3 {
+    color: rgb(255, 255, 255);
+  }
+
+  .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+  }

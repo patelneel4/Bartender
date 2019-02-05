@@ -1,5 +1,6 @@
 <h3>Top Liquids</h3>
-<app-liquid-search></app-liquid-search>
+
+<div>
 <div class="grid grid-pad">
   <a *ngFor="let liquid of liquids" class="col-1-4">
   
@@ -11,13 +12,9 @@
 
 
 
-<h3>Top Drinks</h3>
-<div class="grid grid-pad">
-  <a *ngFor="let drink of drinks" class="col-1-4"
-    routerLink="/detail/{{drink.id}}">
-    <div class="module drink">
-      <h4>{{drink.name}}</h4>
-    </div>
-  </a>
+<h3>Drinks</h3>
 </div>
 
+<div>
+<app-drinks-carousel></app-drinks-carousel>
+</div>

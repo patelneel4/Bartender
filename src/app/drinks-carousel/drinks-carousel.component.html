@@ -1,0 +1,13 @@
+
+<div style="width: 100%">
+<div class="center">
+<ngb-carousel style="text-align:center;">
+    <ng-template ngbSlide *ngFor="let drink of drinks; index as i">
+      <img src="https://picsum.photos/900/500?image={{i}}">
+      <div class="carousel-caption">
+        <h3>{{ drink.name }}</h3>
+      </div>
+    </ng-template>
+  </ngb-carousel>
+</div>
+</div>

@@ -7,6 +7,7 @@ import { DrinksComponent } from './drinks/drinks.component';
 import { DrinkDetailComponent } from './drink-detail/drink-detail.component';
 import { PumpDetailComponent } from './pump-detail/pump-detail.component';
 
+
 const routes: Routes = [{ path: '', redirectTo: '/dashboard', pathMatch: 'full' },
 { path: 'dashboard', component: DashboardComponent },
   { path: 'liquids', component: LiquidsComponent },

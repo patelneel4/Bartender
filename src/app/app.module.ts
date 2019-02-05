@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -12,6 +13,9 @@ import { DrinksComponent } from './drinks/drinks.component';
 import { DrinkDetailComponent } from './drink-detail/drink-detail.component';
 import { PumpsComponent } from './pumps/pumps.component';
 import { PumpDetailComponent } from './pump-detail/pump-detail.component';
+import { DrinksCarouselComponent } from './drinks-carousel/drinks-carousel.component';
+
+
 
 @NgModule({
   imports: [
@@ -19,6 +23,7 @@ import { PumpDetailComponent } from './pump-detail/pump-detail.component';
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
+    NgbModule,
   ],
   providers: [],
   declarations: [
@@ -30,7 +35,8 @@ import { PumpDetailComponent } from './pump-detail/pump-detail.component';
     DrinksComponent,
     DrinkDetailComponent,
     PumpsComponent,
-    PumpDetailComponent
+    PumpDetailComponent,
+    DrinksCarouselComponent,
   ],
   bootstrap: [AppComponent]
 })
