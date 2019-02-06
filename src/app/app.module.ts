@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -16,7 +17,6 @@ import { PumpDetailComponent } from './pump-detail/pump-detail.component';
 import { DrinksCarouselComponent } from './drinks-carousel/drinks-carousel.component';
 
 
-
 @NgModule({
   imports: [
     BrowserModule,
@@ -24,6 +24,7 @@ import { DrinksCarouselComponent } from './drinks-carousel/drinks-carousel.compo
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
+    AngularFontAwesomeModule,
   ],
   providers: [],
   declarations: [

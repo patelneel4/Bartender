@@ -14,13 +14,47 @@
   </button>
 </div>
 
-<ul class="drinks">
-  <li *ngFor="let drink of drinks">
-    <a routerLink="/drink-detail/{{drink.id}}">
-      <span class="badge">{{drink.id}}</span> {{drink.name}} | {{drink.description}} 
-    </a>
-    <button class="delete" title="delete drink"
-      (click)="delete(drink)">x</button>
-     </li>
- 
-</ul>
+<table class="table table-striped" style="width: 100%; max-width: 655px;">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Fuctions</th>
+      </tr>
+    </thead>
+  
+    <tbody>
+      <tr *ngFor="let drink of drinks">
+  
+        <!--Delete Model-->
+        <ng-template #deletemodel let-modal>
+          <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Delete Drink</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Are you sure you want to delete <b>{{drink.name}} | {{drink.description}}</b>?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" (click)="delete(drink);modal.close()">Yes</button>
+            <button type="button" class="btn btn-outline-dark" (click)="modal.close()">No</button>
+          </div>
+        </ng-template>
+  
+        <!--Row-->
+        <td>{{drink.name}}</td>
+        <td>{{drink.description}}</td>
+        <td class="vert-aligned">
+          <button class="delete" title="Delete Liquid" (click)="open(deletemodel)">
+            <fa name="trash"></fa>
+          </button>
+          <button class="edit" title="Edit Liquid">
+            <fa name="cog"></fa>
+          </button>
+        </td>
+        
+      </tr>
+    </tbody>
+  </table>

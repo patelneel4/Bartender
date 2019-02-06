@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { Liquid } from '../liquid';
 import { LiquidService } from '../liquid.service';
 
@@ -11,7 +11,7 @@ import { LiquidService } from '../liquid.service';
 export class LiquidsComponent implements OnInit {
   liquids: Liquid[];
 
-  constructor(private liquidService: LiquidService) { }
+  constructor(private liquidService: LiquidService, private modalService: NgbModal) { }
 
   ngOnInit() {
     this.getLiquids();
@@ -35,6 +35,10 @@ export class LiquidsComponent implements OnInit {
   delete(liquid: Liquid): void {
     this.liquids = this.liquids.filter(h => h !== liquid);
     this.liquidService.deleteliquid(liquid).subscribe();
+  }
+
+  open(content) {
+    this.modalService.open(content);
   }
 
 }

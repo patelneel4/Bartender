@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { Drink } from '../drink';
 import { DrinkService } from '../drinks.service';
 
@@ -10,7 +11,7 @@ import { DrinkService } from '../drinks.service';
 export class DrinksComponent implements OnInit {
   drinks: Drink[] = [];
 
-  constructor(private drinkService: DrinkService ) {}
+  constructor(private drinkService: DrinkService, private modalService: NgbModal ) {}
 
   ngOnInit() {
     this.getDrinks();
@@ -24,6 +25,10 @@ export class DrinksComponent implements OnInit {
   delete(drink: Drink): void {
     this.drinkService.deleteDrink(drink.id)
     .subscribe();
+  }
+
+  open(content) {
+    this.modalService.open(content);
   }
 
 }
