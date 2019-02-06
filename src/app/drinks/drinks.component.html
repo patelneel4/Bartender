@@ -26,7 +26,7 @@
     <tbody>
       <tr *ngFor="let drink of drinks">
   
-        <!--Delete Model-->
+        <!--Delete Modal-->
         <ng-template #deletemodel let-modal>
           <div class="modal-header">
             <h4 class="modal-title" id="modal-basic-title">Delete Drink</h4>
@@ -42,15 +42,32 @@
             <button type="button" class="btn btn-outline-dark" (click)="modal.close()">No</button>
           </div>
         </ng-template>
+
+        <!--Edit Modal-->
+        <ng-template #editmodel let-modal>
+            <div class="modal-header">
+              <h4 class="modal-title" id="modal-basic-title">Edit Drink</h4>
+              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <app-drink-detail [drinkID]=drink.id></app-drink-detail>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-dark" (click)="delete(drink);modal.close()">Yes</button>
+              <button type="button" class="btn btn-outline-dark" (click)="modal.close()">No</button>
+            </div>
+          </ng-template>
   
         <!--Row-->
         <td>{{drink.name}}</td>
         <td>{{drink.description}}</td>
         <td class="vert-aligned">
-          <button class="delete" title="Delete Liquid" (click)="open(deletemodel)">
+          <button class="delete" title="Delete Drink" (click)="open(deletemodel)">
             <fa name="trash"></fa>
           </button>
-          <button class="edit" title="Edit Liquid">
+          <button class="edit" title="Edit Drink" (click)="open(editmodel)">
             <fa name="cog"></fa>
           </button>
         </td>

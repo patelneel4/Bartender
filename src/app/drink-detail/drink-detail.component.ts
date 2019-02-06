@@ -16,6 +16,9 @@ import { Liquid } from '../liquid';
 export class DrinkDetailComponent implements OnInit {
 @Input() drink: Drink;
 @Input() liquid: Liquid;
+@Input() drinkID: number; //Passed as a parameter when loading as a component
+
+
   constructor(
     private route: ActivatedRoute,
     private drinkService: DrinkService,
@@ -28,7 +31,13 @@ export class DrinkDetailComponent implements OnInit {
   }
 
   getDrink(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
+    //This gives us the ability to load as a whole page (with the id in the url) or load as a component (with a parameter)
+    if(this.drinkID==undefined){
+      var id = +this.route.snapshot.paramMap.get('id');
+    } else {
+      id = this.drinkID
+    }
+    
     this.drinkService.getDrink(id)
     .subscribe(drink => this.drink = drink);
   }

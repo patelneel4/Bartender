@@ -6,7 +6,7 @@ label {
     font-weight: bold;
   }
   input {
-    height: 1em;
+    height: auto;
     font-size: 1em;
     padding-left: .4em;
   }
