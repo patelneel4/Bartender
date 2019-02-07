@@ -16,7 +16,7 @@ import { Liquid } from '../liquid';
 export class PumpDetailComponent implements OnInit {
   @Input() pump: Pump;
   @Input() liquids: Liquid[];
-  @Input() pumpID: number; //Passed as a parameter when loading as a component
+  @Input() pumpID: number; // Passed as a parameter when loading as a component
 
   constructor(
     private route: ActivatedRoute,
@@ -31,11 +31,12 @@ export class PumpDetailComponent implements OnInit {
   }
 
   getPump(): void {
-    //This gives us the ability to load as a whole page (with the id in the url) or load as a component (with a parameter)
-    if(this.pumpID==undefined){
-      var id = +this.route.snapshot.paramMap.get('id');
+    // This gives us the ability to load as a whole page (with the id in the url) or load as a component (with a parameter)
+    let id;
+    if (this.pumpID === undefined) {
+       id = +this.route.snapshot.paramMap.get('id');
     } else {
-      id = this.pumpID
+      id = this.pumpID;
     }
 
     this.pumpService.getPump(id)

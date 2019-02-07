@@ -38,7 +38,7 @@ export class PumpsComponent implements OnInit {
     this.pumpService.deletepump(pump).subscribe();
   }
 
-  //Modal Open
+  // Modal Open
   open(content) {
     this.modalService.open(content);
   }
