@@ -1,12 +1,46 @@
 <button style="float:right; margin-top: 5px; margin-right: 10px">Flush<br/>All Pumps</button>
 <h2>Pumps</h2>
 
-<ul class="pumps">
-  <li *ngFor="let pump of pumps">
-    <a routerLink="/pump-detail/{{pump.id}}">
-      <span class="badge">{{pump.id}}</span> {{pump.name}} | {{pump.liquidName}} | {{ pump.flowrate }}ml/s
-    </a>
-    <button class="delete" title="delete pump"
-      (click)="delete(pump)">x</button>
-  </li>
-</ul>
+
+<table class="table table-striped" style="width: 100%; max-width: 655px;">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Liquid</th>
+      <th scope="col">Flowrate</th>
+      <th scope="col">Fuctions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let pump of pumps">
+
+      <!--Edit Modal-->
+      <ng-template #editmodel let-modal>
+          <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Edit Drink</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              <app-pump-detail [pumpID]=pump.id></app-pump-detail>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" (click)="modal.close()">Close</button>
+          </div>
+        </ng-template>
+
+      <!--Row-->
+      <td>{{pump.name}}</td>
+      <td>{{pump.liquidName}}</td>
+      <td>{{pump.flowrate}} ml/s</td>
+      <td class="vert-aligned">
+        <button class="edit" title="Edit Pump" (click)="open(editmodel)">
+          <fa name="cog"></fa>
+        </button>
+      </td>
+      
+    </tr>
+  </tbody>
+</table>

@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
+
 import { Pump } from '../pump';
 import { PumpsService } from '../pumps.service';
 import { LiquidService } from '../liquid.service';
@@ -15,6 +16,7 @@ import { Liquid } from '../liquid';
 export class PumpDetailComponent implements OnInit {
   @Input() pump: Pump;
   @Input() liquids: Liquid[];
+  @Input() pumpID: number; //Passed as a parameter when loading as a component
 
   constructor(
     private route: ActivatedRoute,
@@ -29,7 +31,13 @@ export class PumpDetailComponent implements OnInit {
   }
 
   getPump(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
+    //This gives us the ability to load as a whole page (with the id in the url) or load as a component (with a parameter)
+    if(this.pumpID==undefined){
+      var id = +this.route.snapshot.paramMap.get('id');
+    } else {
+      id = this.pumpID
+    }
+
     this.pumpService.getPump(id)
     .subscribe(pump => this.pump = pump);
   }

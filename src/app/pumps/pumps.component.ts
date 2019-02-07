@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 import { Pump } from '../pump';
 import { PumpsService } from '../pumps.service';
@@ -11,7 +12,8 @@ import { PumpsService } from '../pumps.service';
 export class PumpsComponent implements OnInit {
   pumps: Pump[];
 
-  constructor(private pumpService: PumpsService) { }
+  constructor(private pumpService: PumpsService,
+              private modalService: NgbModal) { }
 
   ngOnInit() {
     this.getPumps();
@@ -34,6 +36,11 @@ export class PumpsComponent implements OnInit {
   delete(pump: Pump): void {
     this.pumps = this.pumps.filter(h => h !== pump);
     this.pumpService.deletepump(pump).subscribe();
+  }
+
+  //Modal Open
+  open(content) {
+    this.modalService.open(content);
   }
 
 }

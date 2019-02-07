@@ -11,7 +11,8 @@ import { DrinkService } from '../drinks.service';
 export class DrinksComponent implements OnInit {
   drinks: Drink[] = [];
 
-  constructor(private drinkService: DrinkService, private modalService: NgbModal ) {}
+  constructor(private drinkService: DrinkService,
+              private modalService: NgbModal ) {}
 
   ngOnInit() {
     this.getDrinks();
@@ -27,6 +28,7 @@ export class DrinksComponent implements OnInit {
     .subscribe();
   }
 
+  //Modal Open
   open(content) {
     this.modalService.open(content);
   }

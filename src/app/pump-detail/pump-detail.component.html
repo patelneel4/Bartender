@@ -1,46 +1,22 @@
 <div *ngIf="pump">
-  <button style="float:right; margin-top: -5px; margin-right: 10px">Calibrate<br/>{{pump.name | uppercase}}</button>
-  <h2 >{{pump.name | uppercase}} Details</h2>
-  <table>
-    <tr>
-      <td>
-        <label>ID:</label>
-      </td>
-      <td>
-        <div>{{pump.id}}</div>
-      </td>
-    </tr>
+  <button style="float:right; margin-top: -5px; margin-right: 10px">Calibrate<br />{{pump.name | uppercase}}</button>
 
-    <tr>
-      <td>
-        <label>Name:</label>
-      </td>
-      <td>
-          <div>{{pump.name}}</div>
-      </td>
-    </tr>
+  <h2>{{pump.name | uppercase}} Details</h2>
 
-    <tr>
-      <td>
-        <label>Liquid:</label>
-      </td>
-      <td>
-        <select [(ngModel)]="pump.liquid">
-          <option *ngFor="let liquid of liquids" [value]="liquid.id" [selected]="pump.liquidName">{{liquid.name}} - {{liquid.brand}} </option>
-        </select>
-      </td>
-    </tr>
+  <div>
+  <label>Liquid:
+    <select [(ngModel)]="pump.liquid">
+      <option *ngFor="let liquid of liquids" [value]="liquid.id" [selected]="pump.liquidName">{{liquid.name}} -
+        {{liquid.brand}} </option>
+    </select>
+  </label>
+</div>
 
-    <tr>
-      <td>
-        <label>Flowrate:</label>
-      </td>
-      <td>
-        <input [(ngModel)]="pump.flowrate" placeholder="flowrate" type="number" /><span style="margin-left:-31px;">ml/s</span>
-      </td>
-    </tr>
+<div>
+  <label>Flowrate (ml/s):
+    <input [(ngModel)]="pump.flowrate" placeholder="flowrate" type="number" />
+  </label>
+</div>
 
-  </table>
-  <button (click)="goBack()">Go Back</button>
   <button (click)="save()">Save</button>
 </div>

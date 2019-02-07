@@ -37,6 +37,7 @@ export class LiquidsComponent implements OnInit {
     this.liquidService.deleteliquid(liquid).subscribe();
   }
 
+  //Modal Open
   open(content) {
     this.modalService.open(content);
   }
