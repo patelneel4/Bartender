@@ -38,7 +38,7 @@
             Are you sure you want to delete <b>{{drink.name}} | {{drink.description}}</b>?
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-outline-dark" (click)="delete(drink);modal.close()">Yes</button>
+            <button type="button" class="btn btn-outline-dark" (click)="delete(drink);getDrink();modal.close()">Yes</button>
             <button type="button" class="btn btn-outline-dark" (click)="modal.close()">No</button>
           </div>
         </ng-template>
@@ -55,7 +55,7 @@
                 <app-drink-detail [drinkID]=drink.id></app-drink-detail>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-outline-dark" (click)="modal.close()">Close</button>
+              <button type="button" class="btn btn-outline-dark" (click)="getDrink();modal.close()">Close</button>
             </div>
           </ng-template>
   

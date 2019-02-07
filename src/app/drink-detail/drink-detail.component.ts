@@ -53,7 +53,7 @@ export class DrinkDetailComponent implements OnInit {
 
   save(): void {
     this.drinkService.updateDrink(this.drink)
-    .subscribe(() => this.goBack());
+    .subscribe();
   }
 
   toArray(answers: object) {

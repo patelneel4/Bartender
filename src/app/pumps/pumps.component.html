@@ -27,13 +27,13 @@
               <app-pump-detail [pumpID]=pump.id></app-pump-detail>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-outline-dark" (click)="modal.close()">Close</button>
+            <button type="button" class="btn btn-outline-dark" (click)="getPumps();modal.close()">Close</button>
           </div>
         </ng-template>
 
       <!--Row-->
       <td>{{pump.name}}</td>
-      <td>{{pump.liquidName}}</td>
+      <td>{{pump.liquidName}} | {{pump.liquidBrand}}</td>
       <td>{{pump.flowrate}} ml/s</td>
       <td class="vert-aligned">
         <button class="edit" title="Edit Pump" (click)="open(editmodel)">
