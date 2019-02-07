@@ -2,3 +2,8 @@
 -A purge option to run all pumps to clear our the current runs
 -Figure out wifi
 -Filter selectable drinks via pumps and liquids
+
+-Add liquidBrand to 'GetPumps'
+-Add pump
+-Edit drinks
+-Google images carousel
