@@ -3,7 +3,10 @@
 -Figure out wifi
 -Filter selectable drinks via pumps and liquids
 
--Add liquidBrand to 'GetPumps'
--Add pump
+-Add liquidBrand to 'GetPumps' -DONE
+-Add pump 
 -Edit drinks
 -Google images carousel
+-Add modal dialog after calibration of pump is finished 
+    -> post 60s pump, produce a dialog that you will enter how much liquid was pumped.
+    -> this will in turn calculate ml/s and update that pumps record in the db.

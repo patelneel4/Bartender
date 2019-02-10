@@ -16,8 +16,8 @@ const httpOptions = {
 @Injectable({ providedIn: 'root' })
 export class PumpsService {
 
-  private pumpsUrl = `${API_URL}/api/pumps`;  // URL to web api
-
+  private pumpsUrl = `${API_URL}/api/pumps`;  // URL to pump api
+  private pinUrl = `${API_URL}/api/pin`; // URL to gpio api
   constructor(
     private http: HttpClient,
     private messageService: MessageService) { }
@@ -98,6 +98,14 @@ export class PumpsService {
     );
   }
 
+  calibratePump(gpio: number, time: number): Observable<Pump> {
+    const url = `${this.pinUrl}/set`;
+    const payload = {'gpio': gpio, 'time': time};
+    return this.http.post(url, payload, httpOptions).pipe(
+      tap(_ => this.log(`triggered gpio=${gpio} for ${time} seconds`)),
+      catchError(this.handleError<any>('updatepump'))
+    );
+  }
   /**
    * Handle Http operation that failed.
    * Let the app continue.

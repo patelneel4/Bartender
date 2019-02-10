@@ -48,6 +48,11 @@ export class PumpDetailComponent implements OnInit {
     .subscribe(liquids => this.liquids = liquids);
   }
 
+  calibratePump(pump: Pump): void {
+    this.pumpService.calibratePump(18, 60)
+    .subscribe();
+  }
+
   goBack(): void {
     this.location.back();
   }

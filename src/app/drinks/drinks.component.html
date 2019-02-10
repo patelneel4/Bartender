@@ -27,7 +27,7 @@
       <tr *ngFor="let drink of drinks">
   
         <!--Delete Modal-->
-        <ng-template #deletemodel let-modal>
+        <ng-template #deletemodal let-modal>
           <div class="modal-header">
             <h4 class="modal-title" id="modal-basic-title">Delete Drink</h4>
             <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -38,13 +38,13 @@
             Are you sure you want to delete <b>{{drink.name}} | {{drink.description}}</b>?
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-outline-dark" (click)="delete(drink);getDrink();modal.close()">Yes</button>
+            <button type="button" class="btn btn-outline-dark" (click)="delete(drink);getDrinks();modal.close()">Yes</button>
             <button type="button" class="btn btn-outline-dark" (click)="modal.close()">No</button>
           </div>
         </ng-template>
 
         <!--Edit Modal-->
-        <ng-template #editmodel let-modal>
+        <ng-template #editmodal let-modal>
             <div class="modal-header">
               <h4 class="modal-title" id="modal-basic-title">Edit Drink</h4>
               <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -63,10 +63,10 @@
         <td>{{drink.name}}</td>
         <td>{{drink.description}}</td>
         <td class="vert-aligned">
-          <button class="delete" title="Delete Drink" (click)="open(deletemodel)">
+          <button class="delete" title="Delete Drink" (click)="open(deletemodal)">
             <fa name="trash"></fa>
           </button>
-          <button class="edit" title="Edit Drink" (click)="open(editmodel)">
+          <button class="edit" title="Edit Drink" (click)="open(editmodal)">
             <fa name="cog"></fa>
           </button>
         </td>
