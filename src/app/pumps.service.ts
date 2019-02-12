@@ -98,11 +98,11 @@ export class PumpsService {
     );
   }
 
-  calibratePump(gpio: number, time: number): Observable<Pump> {
+  calibratePump(pump: Pump, time: number): Observable<Pump> {
     const url = `${this.pinUrl}/set`;
-    const payload = {'gpio': gpio, 'time': time};
+    const payload = {'gpio': pump.id, 'time': time};
     return this.http.post(url, payload, httpOptions).pipe(
-      tap(_ => this.log(`triggered gpio=${gpio} for ${time} seconds`)),
+      tap(_ => this.log(`triggered gpio=${pump.id} for ${time} seconds`)),
       catchError(this.handleError<any>('updatepump'))
     );
   }

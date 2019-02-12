@@ -49,7 +49,7 @@ export class PumpDetailComponent implements OnInit {
   }
 
   calibratePump(pump: Pump): void {
-    this.pumpService.calibratePump(18, 60)
+    this.pumpService.calibratePump(pump, 60)
     .subscribe();
   }
 
