@@ -1,12 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-
-
 import { Pump } from '../pump';
 import { PumpsService } from '../pumps.service';
 import { LiquidService } from '../liquid.service';
 import { Liquid } from '../liquid';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-pump-detail',
@@ -22,7 +22,10 @@ export class PumpDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private pumpService: PumpsService,
     private liquidService: LiquidService,
-    private location: Location
+    private location: Location,
+    private spinner: NgxSpinnerService,
+    private modalService: NgbModal,
+    public activeModal: NgbActiveModal
   ) { }
 
   ngOnInit() {
@@ -47,12 +50,12 @@ export class PumpDetailComponent implements OnInit {
     this.liquidService.getLiquids()
     .subscribe(liquids => this.liquids = liquids);
   }
-
-  calibratePump(pump: Pump): void {
-    this.pumpService.calibratePump(pump, 60)
-    .subscribe();
+  async calibratePump(pump: Pump) {
+    this.spinner.show();
+   const status = await this.pumpService.calibratePump(pump, 10);
+   console.log('Finished running calibration');
+   this.spinner.hide();
   }
-
   goBack(): void {
     this.location.back();
   }
@@ -61,5 +64,4 @@ export class PumpDetailComponent implements OnInit {
     this.pumpService.updatePump(this.pump)
     .subscribe();
   }
-
 }

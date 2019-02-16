@@ -97,15 +97,13 @@ export class PumpsService {
       catchError(this.handleError<any>('updatepump'))
     );
   }
-
-  calibratePump(pump: Pump, time: number): Observable<Pump> {
-    const url = `${this.pinUrl}/set`;
-    const payload = {'gpio': pump.id, 'time': time};
-    return this.http.post(url, payload, httpOptions).pipe(
-      tap(_ => this.log(`triggered gpio=${pump.id} for ${time} seconds`)),
-      catchError(this.handleError<any>('updatepump'))
-    );
-  }
+/**POST: runs the pump for set time period */
+async calibratePump(pump: Pump, time: number) {
+  const url = `${this.pinUrl}/set`;
+  const payload = {'gpio': pump.id, 'time': time};
+  const response = await this.http.post(url, payload, httpOptions).toPromise();
+  return response;
+}
   /**
    * Handle Http operation that failed.
    * Let the app continue.

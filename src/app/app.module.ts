@@ -15,7 +15,7 @@ import { DrinkDetailComponent } from './drink-detail/drink-detail.component';
 import { PumpsComponent } from './pumps/pumps.component';
 import { PumpDetailComponent } from './pump-detail/pump-detail.component';
 import { DrinksCarouselComponent } from './drinks-carousel/drinks-carousel.component';
-
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   imports: [
@@ -25,6 +25,7 @@ import { DrinksCarouselComponent } from './drinks-carousel/drinks-carousel.compo
     HttpClientModule,
     NgbModule,
     AngularFontAwesomeModule,
+    NgxSpinnerModule
   ],
   providers: [],
   declarations: [
