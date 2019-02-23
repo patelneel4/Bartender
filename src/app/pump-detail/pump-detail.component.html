@@ -5,7 +5,7 @@
   type="pacman">
 </ngx-spinner>
 <div *ngIf="pump">
-  <button (click)="calibratePump(pump); " style="float:right; margin-top: -5px; margin-right: 10px">Calibrate<br />{{pump.name | uppercase}}</button>
+  <button (click)="calibratePump(pump, calentrymodal);" style="float:right; margin-top: -5px; margin-right: 10px">Calibrate<br />{{pump.name | uppercase}}</button>
 
   <h2>{{pump.name | uppercase}} Details</h2>
 
@@ -26,3 +26,28 @@
 
   <button (click)="save()">Save</button>
 </div>
+
+<!--Calibration Entry Modal-->
+<ng-template #calentrymodal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Flowrate Calibration</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <form (ngSubmit)="calculateFlow($event)">
+  <div class="modal-body">
+      <div>
+          <div>Volume (ml):
+            <input type="number" name="volumeInput"/>
+          </div>
+        </div>    
+  </div>
+  
+  <div class="modal-footer">
+    <button type="submit">Save</button>
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close()">Close</button>
+  </div>
+</form>
+</ng-template>

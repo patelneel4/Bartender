@@ -6,12 +6,12 @@ import { PumpsService } from '../pumps.service';
 import { LiquidService } from '../liquid.service';
 import { Liquid } from '../liquid';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-pump-detail',
   templateUrl: './pump-detail.component.html',
-  styleUrls: ['./pump-detail.component.css']
+  styleUrls: ['./pump-detail.component.css'],
 })
 export class PumpDetailComponent implements OnInit {
   @Input() pump: Pump;
@@ -24,9 +24,8 @@ export class PumpDetailComponent implements OnInit {
     private liquidService: LiquidService,
     private location: Location,
     private spinner: NgxSpinnerService,
-    private modalService: NgbModal,
-    public activeModal: NgbActiveModal
-  ) { }
+    private modalService: NgbModal
+    ) { }
 
   ngOnInit() {
     this.getPump();
@@ -50,11 +49,12 @@ export class PumpDetailComponent implements OnInit {
     this.liquidService.getLiquids()
     .subscribe(liquids => this.liquids = liquids);
   }
-  async calibratePump(pump: Pump) {
+  async calibratePump(pump: Pump, modal: any) {
     this.spinner.show();
-   const status = await this.pumpService.calibratePump(pump, 10);
-   console.log('Finished running calibration');
+   const status = await this.pumpService.calibratePump(pump, 2);
+   console.log(status);
    this.spinner.hide();
+   this.open(modal);
   }
   goBack(): void {
     this.location.back();
@@ -64,4 +64,18 @@ export class PumpDetailComponent implements OnInit {
     this.pumpService.updatePump(this.pump)
     .subscribe();
   }
+
+    // Modal Open
+    open(content) {
+      this.modalService.open(content);
+    }
+
+    calculateFlow(form: any): void{
+      var volumeInput = form.target.volumeInput.value;
+      var flowrate = volumeInput / 60;
+      this.pump.flowrate = flowrate;
+      this.pumpService.updatePump(this.pump)
+      .subscribe();
+      console.log(flowrate);
+    }
 }
