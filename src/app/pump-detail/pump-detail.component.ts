@@ -70,9 +70,9 @@ export class PumpDetailComponent implements OnInit {
       this.modalService.open(content);
     }
 
-    calculateFlow(form: any): void{
-      var volumeInput = form.target.volumeInput.value;
-      var flowrate = volumeInput / 60;
+    calculateFlow(form: any): void {
+      const volumeInput = form.target.volumeInput.value;
+      const flowrate = volumeInput / 60;
       this.pump.flowrate = flowrate;
       this.pumpService.updatePump(this.pump)
       .subscribe();
