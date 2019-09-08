@@ -36,7 +36,7 @@ export class DrinksComponent implements OnInit {
     .subscribe(drinks => this.drinks = drinks);
   }
 
-   pourDrink(i:number) {
+  pourDrink(i:number) {
     let drink: Drink;
 
     drink = this.drinks.find(({id})=> id === i )
@@ -44,9 +44,7 @@ export class DrinksComponent implements OnInit {
       let pump = this.pumps.find(({liquid})=> liquid === ingredient.liquid);
       let time = ingredient.volume / pump.flowrate;
       const status = this.pumpService.runPump(pump.id, time);
-    }
-    
-  
+    };
   }
 
   delete(drink: Drink): void {
@@ -57,6 +55,10 @@ export class DrinksComponent implements OnInit {
 
   open(content) {
     this.modalService.open(content);
+  }
+
+  closeall() {
+    this.modalService.dismissAll()
   }
 
   add(name: string, desc: string): void {

@@ -1,25 +1,11 @@
--A pump calibration option to calculate pump flowrate in pump details -DONE
-
--A purge option to run all pumps to clear our the current runs -DONE
-
 -Figure out wifi
-
 -Filter selectable drinks via pumps and liquids
-
--Add liquidBrand to 'GetPumps' -DONE
-
--Add pump 
 
 -Edit drinks
     ->Ingerdients
     -> Fix "Close" button
 
 -Google images carousel
-
--Add modal dialog after calibration of pump is finished -DONE
-    -> post 60s pump, produce a dialog that you will enter how much liquid was pumped.
-    -> this will in turn calculate ml/s and update that pumps record in the db.
-
 
 - New Drink modal
     -> Name

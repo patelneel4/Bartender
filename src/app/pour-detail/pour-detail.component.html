@@ -1,0 +1,10 @@
+<div *ngIf="drink">
+  <h2>{{drink.name | uppercase}}</h2>
+  <div>
+    <li *ngFor="let ingredient of drink.ingredients">
+       
+         {{ ingredient.liquidName }} | ({{ ingredient.volume}}ml)
+        
+      </li>
+  </div>
+</div>
