@@ -104,6 +104,14 @@ async calibratePump(pump: Pump, time: number) {
   const response = await this.http.post(url, payload, httpOptions).toPromise();
   return response;
 }
+
+/**POST: runs the pump for set time period */
+async runPump(pump: number, time: number) {
+  const url = `${this.pinUrl}/set`;
+  const payload = {'gpio': pump, 'time': time};
+  const response = await this.http.post(url, payload, httpOptions).toPromise();
+  return response;
+}
   /**
    * Handle Http operation that failed.
    * Let the app continue.

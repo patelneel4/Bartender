@@ -51,7 +51,7 @@ export class PumpDetailComponent implements OnInit {
   }
   async calibratePump(pump: Pump, modal: any) {
     this.spinner.show();
-   const status = await this.pumpService.calibratePump(pump, 2);
+   const status = await this.pumpService.calibratePump(pump, 60);
    console.log(status);
    this.spinner.hide();
    this.open(modal);
