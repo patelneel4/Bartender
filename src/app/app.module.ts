@@ -16,6 +16,8 @@ import { PumpsComponent } from './pumps/pumps.component';
 import { PumpDetailComponent } from './pump-detail/pump-detail.component';
 import { DrinksCarouselComponent } from './drinks-carousel/drinks-carousel.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { PourDetailComponent } from './pour-detail/pour-detail.component';
+import { CountdownModule } from 'ngx-countdown';
 
 @NgModule({
   imports: [
@@ -25,7 +27,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     HttpClientModule,
     NgbModule,
     AngularFontAwesomeModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    CountdownModule 
   ],
   providers: [],
   declarations: [
@@ -39,6 +42,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     PumpsComponent,
     PumpDetailComponent,
     DrinksCarouselComponent,
+    PourDetailComponent,
   ],
   bootstrap: [AppComponent]
 })

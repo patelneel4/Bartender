@@ -58,6 +58,20 @@
               <button type="button" class="btn btn-outline-dark" (click)="getDrink();modal.close()">Close</button>
             </div>
           </ng-template>
+
+        <!--Pour Modal-->
+        <ng-template #pourmodal let-modal>
+          <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Pouring..</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              <app-pour-detail [drinkID]=drink.id></app-pour-detail>
+          </div>
+
+        </ng-template>
   
         <!--Row-->
         <td>{{drink.name}}</td>
@@ -69,7 +83,7 @@
           <button class="edit" title="Edit Drink" (click)="open(editmodal)">
             <fa name="cog"></fa>
           </button>
-          <button class="pour" title="Pour Drink" (click)="pourDrink(drink.id)">
+          <button class="pour" title="Pour Drink" (click)="open(pourmodal);pourDrink(drink.id);modal.close()">
             <fa name="tint"></fa>
           </button>
         </td>

@@ -45,6 +45,7 @@ export class DrinksComponent implements OnInit {
       let time = ingredient.volume / pump.flowrate;
       const status = this.pumpService.runPump(pump.id, time);
     }
+    
   
   }
 
