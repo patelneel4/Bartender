@@ -13,7 +13,7 @@ import { PumpsService } from '../pumps.service';
 })
 export class DrinksComponent implements OnInit {
   drinks: Drink[] = [];
-  pumps: Pump[];
+  pumps: Pump[] =[];
 
 
   constructor(private drinkService: DrinkService,

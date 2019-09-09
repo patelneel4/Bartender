@@ -55,7 +55,7 @@
                 <app-drink-detail [drinkID]=drink.id></app-drink-detail>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-outline-dark" (click)="getDrink();modal.close()">Close</button>
+              <button type="button" class="btn btn-outline-dark" (click)="getDrinks();modal.close()">Close</button>
             </div>
           </ng-template>
 
@@ -65,7 +65,7 @@
             <h4 class="modal-title" id="modal-basic-title">Pouring...</h4>
           </div>
           <div class="modal-body">
-              <app-pour-detail [drinkID]=drink.id [drinks]=drinks></app-pour-detail>
+              <app-pour-detail [drinkID]=drink.id [drinks]=drinks [pumps]=pumps></app-pour-detail>
           </div>
         </ng-template>
   
@@ -79,7 +79,7 @@
           <button class="edit" title="Edit Drink" (click)="open(editmodal)">
             <fa name="cog"></fa>
           </button>
-          <button class="pour" title="Pour Drink" (click)="open(pourmodal);pourDrink(drink.id)">
+          <button class="pour" title="Pour Drink" (click)="open(pourmodal); pourDrink(drink.id); ">
             <fa name="tint"></fa>
           </button>
         </td>

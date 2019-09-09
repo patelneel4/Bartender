@@ -4,10 +4,7 @@ export class Ingredient {
     liquidName: string;
     volume: number;
     drinksId: number;
-
-
-    config = {
-        leftTime: 60
-      };
+    leftTime: number;
+      
 
 }
