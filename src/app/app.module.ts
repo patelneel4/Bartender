@@ -18,6 +18,7 @@ import { DrinksCarouselComponent } from './drinks-carousel/drinks-carousel.compo
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { PourDetailComponent } from './pour-detail/pour-detail.component';
 import { CountdownModule } from 'ngx-countdown';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   imports: [
@@ -28,7 +29,8 @@ import { CountdownModule } from 'ngx-countdown';
     NgbModule,
     AngularFontAwesomeModule,
     NgxSpinnerModule,
-    CountdownModule 
+    CountdownModule,
+    BrowserAnimationsModule 
   ],
   providers: [],
   declarations: [

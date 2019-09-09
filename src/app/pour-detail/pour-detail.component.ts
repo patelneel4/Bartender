@@ -10,6 +10,7 @@ import { Liquid } from '../liquid';
 import { Ingredient } from '../ingredient';
 import { Pump } from '../pump';
 import { PumpsService } from '../pumps.service';
+import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
 
 @Component({
   selector: 'app-pour-detail',
@@ -60,7 +61,7 @@ pourDetail(): void {
 
   for(let ingredient of this.drink.ingredients){
     let pump = this.pumps.find(({liquid})=> liquid === ingredient.liquid);
-    let time = ingredient.volume / pump.flowrate;
+    ingredient.config.leftTime = ingredient.volume / pump.flowrate;
   };
 
 }

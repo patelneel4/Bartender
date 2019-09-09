@@ -4,6 +4,7 @@
     <li *ngFor="let ingredient of drink.ingredients">
        
          {{ ingredient.liquidName }} | ({{ ingredient.volume}}ml)
+         <countdown [config]="ingredient.countdown">$!h!:$!m!:$!s!</countdown>
         
       </li>
   </div>
