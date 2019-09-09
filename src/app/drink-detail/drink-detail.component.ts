@@ -30,7 +30,7 @@ export class DrinkDetailComponent implements OnInit {
     this.getDrink();
   }
 
-  getDrink(): void {
+  async getDrink() {
     // This gives us the ability to load as a whole page (with the id in the url) or load as a component (with a parameter)
     let id;
     if ( this.drinkID === undefined ) {
@@ -38,8 +38,8 @@ export class DrinkDetailComponent implements OnInit {
     } else {
       id = this.drinkID;
     }
-    this.drinkService.getDrink(id)
-    .subscribe(drink => this.drink = drink);
+    this.drink = await this.drinkService.getDrink(id);
+   
   }
 
   getLiquid(id): void {

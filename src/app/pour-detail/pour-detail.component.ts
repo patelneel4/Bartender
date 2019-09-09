@@ -19,7 +19,6 @@ import { CountdownModule } from 'ngx-countdown';
 })
 export class PourDetailComponent implements OnInit {
 @Input() drinkID: number; // Passed as a parameter when loading as a component
-@Input() drinks: Drink[];
 @Input() pumps: Pump[];
 drink: Drink;
 
@@ -32,7 +31,7 @@ ngOnInit(): void {
   this.pourDetail();
 }
 
-pourDetail(): void {
+async pourDetail() {
   // This gives us the ability to load as a whole page (with the id in the url) or load as a component (with a parameter)
   let i;
 
@@ -42,7 +41,7 @@ pourDetail(): void {
     i = this.drinkID;
   }
 
-this.drink = this.drinks.find(({id})=> id === i )
+  this.drink = await this.drinkService.getDrink(i);
 
   for(let ingredient of this.drink.ingredients){
     let pump = this.pumps.find(({liquid})=> liquid === ingredient.liquid);

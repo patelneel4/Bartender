@@ -23,13 +23,15 @@ export class DrinkService {
     private messageService: MessageService) { }
 
   /** GET drinks from the server */
-  getDrinks (): Observable<Drink[]> {
+  async getDrinks (): Promise<Drink[]>{
     const url = `${this.drinksUrl}/all`;
-    return this.http.get<Drink[]>(url)
-      .pipe(
-        tap(_ => this.log('fetched drinks')),
-        catchError(this.handleError('getdrinks', []))
-      );
+    const reponse = await this.http.get<Drink[]>(url).toPromise();
+    return reponse;
+    // return this.http.get<Drink[]>(url)
+    //   .pipe(
+    //     tap(_ => this.log('fetched drinks')),
+    //     catchError(this.handleError('getdrinks', []))
+    //   );
   }
 
   /** GET drink by id. Return `undefined` when id not found */
@@ -47,12 +49,10 @@ export class DrinkService {
   }
 
   /** GET drink by id. Will 404 if id not found */
-  getDrink(id: number): Observable<Drink> {
+  async getDrink(id: number): Promise<Drink> {
     const url = `${this.drinksUrl}/${id}`;
-    return this.http.get<Drink>(url).pipe(
-      tap(_ => this.log(`fetched drink id=${id}`)),
-      catchError(this.handleError<Drink>(`getdrink id=${id}`))
-    );
+    const reponse = await this.http.get<Drink>(url).toPromise();
+    return reponse;
   }
 
   /* GET drinkes whose name contains search term */

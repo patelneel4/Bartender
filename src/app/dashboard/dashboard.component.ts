@@ -25,9 +25,9 @@ drinks: Drink[] = [];
     this.liquidService.getLiquids()
     .subscribe(liquids => this.liquids = liquids.slice(0, 4));
   }
-  getDrinks(): void {
-    this.drinkService.getDrinks()
-    .subscribe(drinks => this.drinks = drinks.slice(0, 4));
-  }
+  async getDrinks(){
+    this.drinks = await this.drinkService.getDrinks()
+     
+   }
 
 }

@@ -26,8 +26,8 @@ export class DrinksCarouselComponent {
     this.getDrinks();
   }
 
-  getDrinks(): void {
-    this.drinkService.getDrinks()
-    .subscribe(drinks => this.drinks = drinks);
-  }
+  async getDrinks(){
+    this.drinks = await this.drinkService.getDrinks()
+     
+   }
 }
