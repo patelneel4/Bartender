@@ -1,15 +1,31 @@
 <div *ngIf="drink">
-  <h2>{{drink.name | uppercase}} Details</h2>
-  <div><span>id: </span>{{drink.id}}</div>
-  <div>
-    <label>Name:
-      <input [(ngModel)]="drink.name" placeholder="name"/>
-    </label>
-    <li *ngFor="let ingredient of drink.ingredients">
 
-      <input [(ngModel)]="ingredient.liquidName" placeholder="Liquid"/> <input type="number" min="1" max="999" [(ngModel)]="ingredient.volume" placeholder="Volume (ml)"/> ml
-        
-    </li>
+  <div>
+    <div>
+      <label>id:</label><input disabled [value]="drink.id" />
+      <br>
+      <label>Name:</label><input [(ngModel)]="drink.name" placeholder="name" />
+      <br>
+      <label style="width: auto">Description:</label><input [(ngModel)]="drink.description" placeholder="Description"/>
+    </div>
+
+    <hr>
+
+    <div>
+      <button (click)="addInputItem()">Add liquid</button>
+      <button (click)="removeInputItem()">Remove liquid</button>
+    </div>
+
+    <div *ngFor="let ingredient of drink.ingredients">
+
+      <select [(ngModel)]="ingredient.liquid" required style="height: 30px; padding-left:5px" (change)="updateList()">
+        <option *ngFor="let liquid of liquids" [value]="liquid.id">{{liquid.name}} - {{liquid.brand}} </option>
+      </select>
+
+      <input type="number" size="40" [(ngModel)]="ingredient.volume" placeholder="20" min="1" max="999"
+        (change)="updateList()">
+
+    </div>
   </div>
-  <button (click)="save()">save</button>
+  <button (click)="save()" style="margin-top: 20px">save</button>
 </div>

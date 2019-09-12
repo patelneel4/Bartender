@@ -25,6 +25,10 @@ export class DrinkCreateComponent implements OnInit {
     this.items.push(new Ingredient);
   };
 
+  removeInputItem(): void {
+    var test = this.items.pop;
+  };
+
   add(name: string, desc: string): void {
     name = name.trim();
     desc = desc.trim();
@@ -43,6 +47,10 @@ export class DrinkCreateComponent implements OnInit {
   getLiquids(): void {
     this.liquidService.getLiquids()
     .subscribe(liquids => this.liquids = liquids);
+  }
+
+  updateList(): void {
+
   }
 
 }

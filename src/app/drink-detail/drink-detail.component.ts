@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-
+import { Ingredient } from '../ingredient';
 import { Drink } from '../drink';
 import { DrinkService } from '../drinks.service';
 import { LiquidService } from '../liquid.service';
@@ -67,4 +67,13 @@ liquids: Liquid[];
   toArray(answers: object) {
     return Object.keys(answers).map(key => answers[key]);
   }
+
+  addInputItem(): void {
+    this.drink.ingredients.push(new Ingredient);
+  };
+
+  removeInputItem(): void {
+    this.drink.ingredients.pop;
+  };
+
 }

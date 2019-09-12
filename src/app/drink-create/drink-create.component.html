@@ -1,17 +1,25 @@
 <div>
+  <div>
+    <input #drinkName required placeholder="Name" />
+    <input #drinkDescription required placeholder="Description" />
+  </div>
 
-  <input #drinkName placeholder="Name" />
+  <hr>
 
-  <input #drinkDescription placeholder="Description" />
+  <div>
+      <button (click)="addInputItem()">Add liquid</button>
+      <button (click)="removeInputItem()">Remove liquid</button>
+  </div>
 
-
-  <button (click)="addInputItem()">Add liquid</button>
   <div *ngFor="let item of items">
-      <select [(ngModel)]="item.liquid">
-          <option *ngFor="let liquid of liquids" [value]="liquid.id" placeholder="Pick a Liquid">{{liquid.name}} - {{liquid.brand}} </option>
-        </select>
-    <input type="number" size="40" [(ngModel)]="item.volume" placeholder="">
+
+    <select [(ngModel)]="item.liquid" required style="height: 30px; padding-left:5px" (change)="updateList()">
+      <option [ngValue]="undefined" hidden disabled selected>Select a liquid</option>
+      <option *ngFor="let liquid of liquids" [value]="liquid.id">{{liquid.name}} - {{liquid.brand}} </option>
+    </select>
+
+    <input type="number" required size="40" [(ngModel)]="item.volume" placeholder="Volume (ml)" min="1" max="999" (change)="updateList()">
   </div>
 
 </div>
-<button (click)="add(drinkName.value, drinkDescription.value)">save</button>
+<button (click)="add(drinkName.value, drinkDescription.value)" style="margin-top: 20px">save</button>
