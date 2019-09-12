@@ -1,16 +1,10 @@
 <h2>Drinks</h2>
 
 <div>
-  <label>Drink name:
-    <input #drinkName />
-  </label>
-  &#160;
-  <label>Drink description:
-    <input #drinkDescription/>
-  </label>
+
   <!-- (click) passes input value to add() and then clears the input -->
-  <button (click)="add(drinkName.value, drinkDescription.value); drinkName.value=''; drinkDescription.value=''">
-    add
+  <button (click)="open(createmodal);">
+    New Drink
   </button>
 </div>
 
@@ -87,3 +81,13 @@
       </tr>
     </tbody>
   </table>
+
+<!--Create Modal-->
+<ng-template #createmodal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Create a new drink</h4>
+  </div>
+  <div class="modal-body">
+      <app-drink-create></app-drink-create>
+  </div>
+</ng-template>

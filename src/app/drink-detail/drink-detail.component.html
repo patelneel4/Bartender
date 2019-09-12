@@ -6,10 +6,10 @@
       <input [(ngModel)]="drink.name" placeholder="name"/>
     </label>
     <li *ngFor="let ingredient of drink.ingredients">
-       
-         {{ ingredient.liquidName }} ({{ ingredient.volume}} ml)
+
+      <input [(ngModel)]="ingredient.liquidName" placeholder="Liquid"/> <input type="number" min="1" max="999" [(ngModel)]="ingredient.volume" placeholder="Volume (ml)"/> ml
         
-      </li>
+    </li>
   </div>
   <button (click)="save()">save</button>
 </div>

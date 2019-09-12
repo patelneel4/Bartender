@@ -19,6 +19,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { PourDetailComponent } from './pour-detail/pour-detail.component';
 import { CountdownModule } from 'ngx-countdown';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DrinkCreateComponent } from './drink-create/drink-create.component';
 
 @NgModule({
   imports: [
@@ -45,6 +46,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     PumpDetailComponent,
     DrinksCarouselComponent,
     PourDetailComponent,
+    DrinkCreateComponent,
   ],
   bootstrap: [AppComponent]
 })

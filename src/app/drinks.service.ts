@@ -90,9 +90,9 @@ export class DrinkService {
   }
 
   /** PUT: update the drink on the server */
-  updateDrink (drink: Drink): Observable<any> {
+  updateDrink (drink: Drink): Observable<Drink> {
     const url = `${this.drinksUrl}/update`;
-    return this.http.put(url, drink, httpOptions).pipe(
+    return this.http.post(url, drink, httpOptions).pipe(
       tap(_ => this.log(`updated drink id=${drink.id}`)),
       catchError(this.handleError<any>('updatedrink'))
     );

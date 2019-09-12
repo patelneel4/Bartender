@@ -18,6 +18,8 @@ export class DrinkDetailComponent implements OnInit {
 @Input() liquid: Liquid;
 @Input() drinkID: number; // Passed as a parameter when loading as a component
 
+liquids: Liquid[];
+
 
   constructor(
     private route: ActivatedRoute,
@@ -27,7 +29,13 @@ export class DrinkDetailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.getLiquids();
     this.getDrink();
+  }
+
+  getLiquids(): void {
+    this.liquidService.getLiquids()
+    .subscribe(liquids => this.liquids = liquids);
   }
 
   async getDrink() {

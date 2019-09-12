@@ -61,22 +61,4 @@ export class DrinksComponent implements OnInit {
     this.modalService.dismissAll()
   }
 
-  add(name: string, desc: string): void {
-    name = name.trim();
-    desc = desc.trim();
-    let d : Drink = {
-      id: 0,
-      name: name,
-      description: desc,
-      ingredients : null
-    };
-
-    if (!name) { return; }
-    this.drinkService.addDrink(d)
-      .subscribe(drink => {
-        this.drinks.push(drink);
-      });
-      this.getDrinks();
-  }
-
 }
