@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
-import { Drink } from '../drink';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { Drink, DrinkQueue } from '../drink';
 import { DrinkService } from '../drinks.service';
 import { Ingredient } from '../ingredient';
 import { Pump } from '../pump';
@@ -13,47 +13,70 @@ import { PumpsService } from '../pumps.service';
 })
 export class DrinksComponent implements OnInit {
   drinks: Drink[] = [];
-  pumps: Pump[] =[];
+  pumps: Pump[] = [];
+  drinkQueue: DrinkQueue[] =[];
+  pourMessage: String;
+  showPourButtons: Boolean = false;
 
 
   constructor(private drinkService: DrinkService,
-              private modalService: NgbModal,
-              private pumpService: PumpsService ) {}
+    private modalService: NgbModal,
+    private pumpService: PumpsService) { }
 
   ngOnInit() {
     this.getDrinks();
-    this.getPumps();  
+    this.getPumps();
   }
 
   getPumps(): void {
     this.pumpService.getPumps()
-    .subscribe(pumps => this.pumps = pumps);
+      .subscribe(pumps => this.pumps = pumps);
   }
 
 
-  async getDrinks(){
-   this.drinks = await this.drinkService.getDrinks()
-    
+  async getDrinks() {
+    this.drinks = await this.drinkService.getDrinks()
+
   }
 
-  pourDrink(i:number) {
+  async checkDrinkQueue(i: number){
+    this.drinkQueue = await this.drinkService.getDrinksQueue();
+    if (this.drinkQueue.length > 0) {
+      this.showPourButtons =true;
+    this.pourMessage = "There is a drink currently being poured, please wait..."
+    }else{
+      this.showPourButtons =false
+     let drink = this.drinks.find(({ id }) => id === i);
+     this.pourMessage = "Would you like to pour "+drink.name+"?";
+    }
+  }
+
+  async pourDrink(i: number) {
     let drink: Drink;
 
-    drink = this.drinks.find(({id})=> id === i )
-    for(let ingredient of drink.ingredients){
-      let pump = this.pumps.find(({liquid})=> liquid === ingredient.liquid);
-      let time = ingredient.volume / pump.flowrate;
-      const status = this.pumpService.runPump(pump.id, time);
-    };
+
+   
+    if (this.drinkQueue.length < 1) {
+      drink = this.drinks.find(({ id }) => id === i)
+      this.drinkService.addDrinkToQueue(drink.id);
+      this.pourMessage = "Would you like to pour "+drink.name+"?";
+      for (let ingredient of drink.ingredients) {
+        let pump = this.pumps.find(({ liquid }) => liquid === ingredient.liquid);
+        let time = ingredient.volume / pump.flowrate;
+        const status = this.pumpService.runPump(pump.id, time);
+      };
+    }
   }
 
   delete(drink: Drink): void {
     this.drinkService.deleteDrink(drink.id)
-    .subscribe();
-     this.getDrinks();
+      .subscribe();
+    this.getDrinks();
   }
 
   open(content) {
+    var modal;
+
     this.modalService.open(content);
   }
 

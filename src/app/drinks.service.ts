@@ -4,7 +4,7 @@ import { environment } from '../environments/environment';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { Drink } from './drink';
+import { Drink, DrinkQueue } from './drink';
 import { MessageService } from './message.service';
 
 const API_URL = environment.apiUrl;
@@ -27,11 +27,6 @@ export class DrinkService {
     const url = `${this.drinksUrl}/all`;
     const reponse = await this.http.get<Drink[]>(url).toPromise();
     return reponse;
-    // return this.http.get<Drink[]>(url)
-    //   .pipe(
-    //     tap(_ => this.log('fetched drinks')),
-    //     catchError(this.handleError('getdrinks', []))
-    //   );
   }
 
   /** GET drink by id. Return `undefined` when id not found */
@@ -97,6 +92,25 @@ export class DrinkService {
       catchError(this.handleError<any>('updatedrink'))
     );
   }
+
+ async addDrinkToQueue(id: number) {
+    const url = `${this.drinksUrl}/addDrinkToQueue/${id}`;
+    const reponse = await this.http.post(url,null).toPromise();
+    return reponse;
+  }
+
+ async deleteDrinkFromQueue (id :number) {
+    const url = `${this.drinksUrl}/deleteDrinkFromQueue/${id}`;
+    const reponse = await this.http.delete(url,httpOptions).toPromise();
+  }
+
+   /** GET drinksQueue from the server */
+   async getDrinksQueue (): Promise<DrinkQueue[]>{
+    const url = `${this.drinksUrl}/all/getDrinksQueue`;
+    const reponse = await this.http.get<DrinkQueue[]>(url).toPromise();
+    return reponse;
+  }
+
 
   /**
    * Handle Http operation that failed.

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
@@ -18,40 +18,48 @@ import { CountdownComponent } from 'ngx-countdown';
   styleUrls: ['./pour-detail.component.css']
 })
 export class PourDetailComponent implements OnInit {
-@Input() drinkID: number; // Passed as a parameter when loading as a component
-@Input() pumps: Pump[];
-drink: Drink;
-@ViewChild('countdown',null) counter: CountdownComponent;
+  @Input() drinkID: number; // Passed as a parameter when loading as a component
+  @Input() pumps: Pump[];
+  drink: Drink;
+  largestTime: number;
+  @ViewChild('countdown', null) counter: CountdownComponent;
 
-constructor(private drinkService: DrinkService,
-  private modalService: NgbModal,
-  private route: ActivatedRoute,) {}
+  constructor(private drinkService: DrinkService,
+    private modalService: NgbModal,
+    private route: ActivatedRoute, ) { }
 
-ngOnInit(): void {
+  ngOnInit(): void {
 
-  this.pourDetail();
-}
-
-async pourDetail() {
-  // This gives us the ability to load as a whole page (with the id in the url) or load as a component (with a parameter)
-  let i;
-
-  if ( this.drinkID === undefined ) {
-     i = +this.route.snapshot.paramMap.get('id');
-  } else {
-    i = this.drinkID;
+    this.pourDetail();
   }
 
-  this.drink = await this.drinkService.getDrink(i);
+  async pourDetail() {
+    // This gives us the ability to load as a whole page (with the id in the url) or load as a component (with a parameter)
+    let i;
 
-  for(let ingredient of this.drink.ingredients){
-    let pump = this.pumps.find(({liquid})=> liquid === ingredient.liquid);
-    ingredient.leftTime = ingredient.volume / pump.flowrate;
-  };
-  this.counter.begin();
+    if (this.drinkID === undefined) {
+      i = +this.route.snapshot.paramMap.get('id');
+    } else {
+      i = this.drinkID;
+    }
 
+    this.drink = await this.drinkService.getDrink(i);
+    this.largestTime = 0;
+    for (let ingredient of this.drink.ingredients) {
+      let pump = this.pumps.find(({ liquid }) => liquid === ingredient.liquid);
+      ingredient.leftTime = ingredient.volume / pump.flowrate;
+      if (ingredient.leftTime > this.largestTime) {
+        this.largestTime = ingredient.leftTime;
+      }
+    };
+    this.counter.begin();
+  }
 
-}
+  pourFinished($event):void {
+    let status = $event.action;
+    if(status === "done"){
+      this.drinkService.deleteDrinkFromQueue(this.drink.id);
+    }
+  }
 
-  
 }

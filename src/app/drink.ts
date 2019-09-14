@@ -7,3 +7,8 @@ export class Drink {
     ingredients: Ingredient[];
 }
 
+export class DrinkQueue{
+    id: number;
+    drinkId: number;
+}
+

@@ -8,79 +8,100 @@
   </button>
 </div>
 
-<table class="table table-striped" style="width: 100%; max-width: 655px;">
-    <thead>
-      <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Description</th>
-        <th scope="col">Fuctions</th>
-      </tr>
-    </thead>
-  
-    <tbody>
-      <tr *ngFor="let drink of drinks">
-  
-        <!--Delete Modal-->
-        <ng-template #deletemodal let-modal>
-          <div class="modal-header">
-            <h4 class="modal-title" id="modal-basic-title">Delete Drink</h4>
-            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            Are you sure you want to delete <b>{{drink.name}} | {{drink.description}}</b>?
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-outline-dark" (click)="delete(drink);getDrinks();modal.close()">Yes</button>
-            <button type="button" class="btn btn-outline-dark" (click)="modal.close()">No</button>
-          </div>
-        </ng-template>
+<table class="table table-striped" style="width: 100%;">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Description</th>
+      <th scope="col">Fuctions</th>
+    </tr>
+  </thead>
 
-        <!--Edit Modal-->
-        <ng-template #editmodal let-modal>
-            <div class="modal-header">
-              <h4 class="modal-title" id="modal-basic-title">Edit Drink</h4>
-              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-                <app-drink-detail [drinkID]=drink.id></app-drink-detail>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-outline-dark" (click)="getDrinks();modal.close()">Close</button>
-            </div>
-          </ng-template>
+  <tbody>
+    <tr *ngFor="let drink of drinks">
 
-        <!--Pour Modal-->
-        <ng-template #pourmodal let-modal>
-          <div class="modal-header">
-            <h4 class="modal-title" id="modal-basic-title">Pouring...</h4>
+      <!--Delete Modal-->
+      <ng-template #deletemodal let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">Delete Drink</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to delete <b>{{drink.name}} | {{drink.description}}</b>?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark"
+            (click)="delete(drink);getDrinks();modal.close()">Yes</button>
+          <button type="button" class="btn btn-outline-dark" (click)="modal.close()">No</button>
+        </div>
+      </ng-template>
+
+      <!--Edit Modal-->
+      <ng-template #editmodal let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">Edit Drink</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <app-drink-detail [drinkID]=drink.id></app-drink-detail>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark" (click)="getDrinks();modal.close()">Close</button>
+        </div>
+      </ng-template>
+
+      <!--Pour Modal-->
+      <ng-template #pourmodal let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">Pouring...</h4>
+        </div>
+        <div class="modal-body">
+          <app-pour-detail [drinkID]=drink.id [pumps]=pumps></app-pour-detail>
+        </div>
+      </ng-template>
+
+      <!--Pour Confirm-->
+      <ng-template #pourconfirmmodal let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">Confirm</h4>
+        </div>
+        <div class="modal-body">
+          <div>
+            <h6>{{pourMessage}}</h6>
           </div>
-          <div class="modal-body">
-              <app-pour-detail [drinkID]=drink.id [pumps]=pumps></app-pour-detail>
-          </div>
-        </ng-template>
-  
-        <!--Row-->
-        <td>{{drink.name}}</td>
-        <td>{{drink.description}}</td>
-        <td class="vert-aligned">
-          <button class="delete" title="Delete Drink" (click)="open(deletemodal)">
-            <fa name="trash"></fa>
+        </div>
+        <div [hidden] = "showPourButtons" class="modal-footer">
+          <button class="accept" title="Pour Drink" (click)="modal.close();open(pourmodal); pourDrink(drink.id); ">
+            <fa name="check"></fa> YES!!
           </button>
-          <button class="edit" title="Edit Drink" (click)="open(editmodal)">
-            <fa name="cog"></fa>
+          <button class="decline" title="Pour Drink" (click)="modal.close()">
+            <fa name="times"></fa> NO
           </button>
-          <button class="pour" title="Pour Drink" (click)="open(pourmodal); pourDrink(drink.id); ">
-            <fa name="tint"></fa>
-          </button>
-        </td>
-        
-      </tr>
-    </tbody>
-  </table>
+        </div>
+      </ng-template>
+
+      <!--Row-->
+      <td style="padding-left:10px;">{{drink.name}}</td>
+      <td>{{drink.description}}</td>
+      <td class="vert-aligned">
+        <button class="delete" title="Delete Drink" (click)="open(deletemodal)">
+          <fa name="trash"></fa>
+        </button>
+        <button class="edit" title="Edit Drink" (click)="open(editmodal)">
+          <fa name="cog"></fa>
+        </button>
+        <button class="pour" title="Pour Drink" (click)="checkDrinkQueue(drink.id); open(pourconfirmmodal); ">
+          <fa name="tint"></fa>
+        </button>
+      </td>
+
+    </tr>
+  </tbody>
+</table>
 
 <!--Create Modal-->
 <ng-template #createmodal let-modal>
@@ -88,6 +109,6 @@
     <h4 class="modal-title" id="modal-basic-title">Create a new drink</h4>
   </div>
   <div class="modal-body">
-      <app-drink-create></app-drink-create>
+    <app-drink-create></app-drink-create>
   </div>
 </ng-template>

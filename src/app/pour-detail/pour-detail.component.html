@@ -1,10 +1,15 @@
 <div *ngIf="drink">
   <h2>{{drink.name}}</h2>
   <div>
+    <h6>Total pour time remaining:</h6>
+    <countdown [config]="{leftTime: largestTime }" (event)="pourFinished($event)">$!s!</countdown>
+
+    <hr>
+
     <li *ngFor="let ingredient of drink.ingredients">
          {{ ingredient.liquidName }} | ({{ ingredient.volume}}ml) -
-         <countdown [config]="{leftTime: ingredient.leftTime}">$!h!:$!m!:$!s!</countdown>
-        
+         <countdown [config]="{leftTime: ingredient.leftTime}">$!s!</countdown>
+         
       </li>
   </div>
 </div>

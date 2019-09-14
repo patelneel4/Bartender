@@ -26,7 +26,7 @@ export class DrinkCreateComponent implements OnInit {
   };
 
   removeInputItem(): void {
-    var test = this.items.pop;
+    this.items.pop();
   };
 
   add(name: string, desc: string): void {

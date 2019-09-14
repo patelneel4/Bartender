@@ -50,9 +50,30 @@ button:disabled {
   margin-left:5px;
 }
 
+.accept{
+  background-color: rgb(69, 212, 47);
+  color: rgb(255, 255, 255);
+  height: auto;
+  margin: 0px;
+  margin-top:5px;
+  margin-bottom:5px;
+  margin-left:5px;
+}
+
+.decline{
+  background-color: rgb(179, 27, 27);
+  color: rgb(255, 255, 255);
+  height: auto;
+  margin: 0px;
+  margin-top:5px;
+  margin-bottom:5px;
+  margin-left:5px;
+}
+
 td, th{
   padding: 0px;
   vertical-align: middle;
+  width: 33%
 }
 
   
