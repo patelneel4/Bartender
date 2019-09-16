@@ -1,5 +1,39 @@
+<button style="float:right; margin-top: 5px; margin-right: 10px" (click)="open(editmodel)">Flush<br /> Pumps</button>
 
-<button style="float:right; margin-top: 5px; margin-right: 10px">Flush<br/>All Pumps</button>
+<!--Flush Modal-->
+<ng-template #editmodel let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Pump Flush</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" style="text-align: center">
+
+    <label>Flush Time (s):
+      <input #flushTime type="number" value="15" />
+    </label>
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Click a Pump to Flush</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pump of pumps" (click)="this.pumpService.runPump(pump.id, flushTime.value)">
+          <td>{{pump.name}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button type="button" class="btn btn-outline-dark" (click)="flushAll(flushTime.value)">Flush All Pumps</button>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="getPumps();modal.close()">Close</button>
+  </div>
+</ng-template>
+
 <h2 style="margin-top: 25px">Pumps</h2>
 
 <table class="table table-striped" style="width: 100%;">
@@ -17,19 +51,19 @@
 
       <!--Edit Modal-->
       <ng-template #editmodel let-modal>
-          <div class="modal-header">
-            <h4 class="modal-title" id="modal-basic-title">Edit Drink</h4>
-            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-              <app-pump-detail [pumpID]=pump.id></app-pump-detail>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-outline-dark" (click)="getPumps();modal.close()">Close</button>
-          </div>
-        </ng-template>
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">Edit Drink</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <app-pump-detail [pumpID]=pump.id></app-pump-detail>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark" (click)="getPumps();modal.close()">Close</button>
+        </div>
+      </ng-template>
 
       <!--Row-->
       <td>{{pump.name}}</td>
@@ -40,7 +74,7 @@
           <fa name="cog"></fa>
         </button>
       </td>
-      
+
     </tr>
   </tbody>
 </table>

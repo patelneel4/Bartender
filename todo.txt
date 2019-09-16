@@ -14,4 +14,6 @@
 
 - Limit active pours to 1 (will we need a queue?)
 
+-Probably make the flush pump modal its own app?
+
 

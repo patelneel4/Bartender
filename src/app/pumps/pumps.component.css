@@ -1,6 +1,6 @@
 /* pumpssComponent's private CSS styles */
 button {
-  margin-top: 20px;
+  margin-top: 5px;
   margin-right: 5px;
   margin-bottom: 5px;
   font-family: Arial;
@@ -44,6 +44,11 @@ td, th{
   padding: 0px;
   vertical-align: middle;
 }
+
+tbody tr:nth-child(even):hover, tbody tr:nth-child(odd):hover  {
+  background-color: #c7c7c7;
+}
+
 
   
   

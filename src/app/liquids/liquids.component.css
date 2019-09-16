@@ -44,5 +44,9 @@ td, th{
   vertical-align: middle;
 }
 
+tbody tr:nth-child(even):hover, tbody tr:nth-child(odd):hover  {
+  background-color: #c7c7c7;
+}
+
   
   

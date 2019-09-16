@@ -11,6 +11,7 @@ import { PumpsService } from '../pumps.service';
 })
 export class PumpsComponent implements OnInit {
   pumps: Pump[];
+  flushTime: number;
 
   constructor(private pumpService: PumpsService,
               private modalService: NgbModal) { }
@@ -41,6 +42,12 @@ export class PumpsComponent implements OnInit {
   // Modal Open
   open(content) {
     this.modalService.open(content);
+  }
+
+  flushAll(time:number): void {
+    for (let pump of this.pumps) {
+      this.pumpService.runPump(pump.id, time)
+    };
   }
 
 }
