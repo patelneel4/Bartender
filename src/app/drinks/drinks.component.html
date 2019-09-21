@@ -2,9 +2,12 @@
 
 <div>
 
-  <!-- (click) passes input value to add() and then clears the input -->
   <button (click)="open(createmodal);">
     New Drink
+  </button>
+
+  <button (click)="getDrinks();">
+    Refresh List
   </button>
 </div>
 
@@ -42,15 +45,12 @@
       <ng-template #editmodal let-modal>
         <div class="modal-header">
           <h4 class="modal-title" id="modal-basic-title">Edit Drink</h4>
-          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <button type="button" class="close" aria-label="Close" (click)="getDrinks();modal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <app-drink-detail [drinkID]=drink.id></app-drink-detail>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-outline-dark" (click)="getDrinks();modal.close()">Close</button>
+          <app-drink-detail [drinkID]=drink.id [getDrinks]="getDrinksFunc" [close]=modal.close></app-drink-detail>
         </div>
       </ng-template>
 
@@ -109,6 +109,6 @@
     <h4 class="modal-title" id="modal-basic-title">Create a new drink</h4>
   </div>
   <div class="modal-body">
-    <app-drink-create></app-drink-create>
+    <app-drink-create [getDrinks]="getDrinksFunc" [close]=modal.close></app-drink-create>
   </div>
 </ng-template>

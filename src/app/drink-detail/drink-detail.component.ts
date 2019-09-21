@@ -17,6 +17,8 @@ export class DrinkDetailComponent implements OnInit {
 @Input() drink: Drink;
 @Input() liquid: Liquid;
 @Input() drinkID: number; // Passed as a parameter when loading as a component
+@Input() getDrinks: Function;
+@Input() close: Function;
 
 liquids: Liquid[];
 
@@ -31,6 +33,10 @@ liquids: Liquid[];
   ngOnInit(): void {
     this.getLiquids();
     this.getDrink();
+  }
+
+  ngOnDestroy() {
+    this.getDrinks();
   }
 
   getLiquids(): void {

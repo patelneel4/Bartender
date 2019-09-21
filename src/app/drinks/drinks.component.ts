@@ -9,7 +9,7 @@ import { PumpsService } from '../pumps.service';
 @Component({
   selector: 'app-drinks',
   templateUrl: './drinks.component.html',
-  styleUrls: ['./drinks.component.css']
+  styleUrls: ['./drinks.component.css'],
 })
 export class DrinksComponent implements OnInit {
   drinks: Drink[] = [];
@@ -36,7 +36,10 @@ export class DrinksComponent implements OnInit {
 
   async getDrinks() {
     this.drinks = await this.drinkService.getDrinks()
+  }
 
+  get getDrinksFunc(){
+    return this.getDrinks.bind(this);
   }
 
   async checkDrinkQueue(i: number){
@@ -75,13 +78,7 @@ export class DrinksComponent implements OnInit {
   }
 
   open(content) {
-    var modal;
-
     this.modalService.open(content);
-  }
-
-  closeall() {
-    this.modalService.dismissAll()
   }
 
 }

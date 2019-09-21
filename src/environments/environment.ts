@@ -4,5 +4,5 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://raspberrypi:3000'
+  apiUrl: 'http://bartender:3000'
 };

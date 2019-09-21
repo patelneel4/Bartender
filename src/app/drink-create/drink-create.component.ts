@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { Drink } from '../drink';
 import { DrinkService } from '../drinks.service';
 import { Ingredient } from '../ingredient';
@@ -11,6 +11,8 @@ import { Liquid } from '../liquid';
   styleUrls: ['./drink-create.component.css']
 })
 export class DrinkCreateComponent implements OnInit {
+  @Input() getDrinks: Function;
+  @Input() close: Function;
   items: Ingredient[] = [new Ingredient];
   liquids: Liquid[];
 
@@ -19,6 +21,10 @@ export class DrinkCreateComponent implements OnInit {
 
   ngOnInit() {
     this.getLiquids();
+  }
+
+  ngOnDestroy() {
+    this.getDrinks();
   }
 
   addInputItem(): void {
