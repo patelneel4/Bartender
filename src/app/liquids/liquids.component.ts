@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Liquid } from '../liquid';
 import { LiquidService } from '../liquid.service';
 import { Pump } from '../pump';
@@ -19,13 +19,15 @@ export class LiquidsComponent implements OnInit {
     this.getLiquids();
   }
 
-  async getLiquids(){
+  async getLiquids() {
     let pumps = await this.pumpService.getPumps()
     this.liquids = await this.liquidService.getLiquids()
-    for (let l of this.liquids) {
+    this.liquids.forEach((l) => {
       let pump = pumps.find(({ liquid }) => liquid === l.id);
-      l.pump = pump.name;
-    };
+      if (pump !== undefined) {
+        l.pump = pump.name;
+      }
+    });
   }
 
   add(name: string, brand: string): void {
