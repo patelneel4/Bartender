@@ -21,10 +21,10 @@ drinks: Drink[] = [];
     this.getDrinks();
   }
 
-  getLiquids(): void {
-    this.liquidService.getLiquids()
-    .subscribe(liquids => this.liquids = liquids.slice(0, 4));
+  async getLiquids() {
+    this.liquids =  await this.liquidService.getLiquids();
   }
+  
   async getDrinks(){
     this.drinks = await this.drinkService.getDrinks()
      

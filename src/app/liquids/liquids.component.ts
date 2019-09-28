@@ -12,27 +12,20 @@ import { PumpsService } from '../pumps.service';
 })
 export class LiquidsComponent implements OnInit {
   liquids: Liquid[];
-  pumps: Pump[];
 
   constructor(private pumpService: PumpsService, private liquidService: LiquidService, private modalService: NgbModal) { }
 
   ngOnInit() {
     this.getLiquids();
-    this.getPumps();
   }
 
-  getLiquids(): void {
-    this.liquidService.getLiquids()
-    .subscribe(liquids => this.liquids = liquids);
+  async getLiquids(){
+    let pumps = await this.pumpService.getPumps()
+    this.liquids = await this.liquidService.getLiquids()
     for (let l of this.liquids) {
-      let pump = this.pumps.find(({ liquid }) => liquid === l.id);
+      let pump = pumps.find(({ liquid }) => liquid === l.id);
       l.pump = pump.name;
     };
-  }
-
-  getPumps(): void {
-    this.pumpService.getPumps()
-    .subscribe(pumps => this.pumps = pumps);
   }
 
   add(name: string, brand: string): void {

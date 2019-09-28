@@ -45,10 +45,10 @@ export class PumpDetailComponent implements OnInit {
     .subscribe(pump => this.pump = pump);
   }
 
-  getLiquids(): void {
-    this.liquidService.getLiquids()
-    .subscribe(liquids => this.liquids = liquids);
+  async getLiquids() {
+    this.liquids =  await this.liquidService.getLiquids();
   }
+  
   async calibratePump(pump: Pump, modal: any) {
     this.spinner.show();
    const status = await this.pumpService.calibratePump(pump, 60);

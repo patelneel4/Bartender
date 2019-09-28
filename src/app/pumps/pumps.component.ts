@@ -20,9 +20,8 @@ export class PumpsComponent implements OnInit {
     this.getPumps();
   }
 
-  getPumps(): void {
-    this.pumpService.getPumps()
-    .subscribe(pumps => this.pumps = pumps);
+  async getPumps() {
+    this.pumps = await this.pumpService.getPumps()
   }
 
   // add(id: number,  name: string, flowrate: number, liquid: number): void {

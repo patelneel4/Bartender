@@ -50,9 +50,8 @@ export class DrinkCreateComponent implements OnInit {
 
   }
 
-  getLiquids(): void {
-    this.liquidService.getLiquids()
-    .subscribe(liquids => this.liquids = liquids);
+  async getLiquids() {
+    this.liquids =  await this.liquidService.getLiquids();
   }
 
   updateList(): void {

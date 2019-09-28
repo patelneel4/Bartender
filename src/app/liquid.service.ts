@@ -23,13 +23,11 @@ export class LiquidService {
     private messageService: MessageService) { }
 
   /** GET liquids from the server */
-  getLiquids (): Observable<Liquid[]> {
+  async getLiquids (): Promise<Liquid[]> {
     const url = `${this.liquidsUrl}/all`;
-    return this.http.get<Liquid[]>(url)
-      .pipe(
-        tap(_ => this.log('fetched liquids')),
-        catchError(this.handleError('getLiquids', []))
-      );
+    const reponse = await this.http.get<Liquid[]>(url).toPromise();
+    return reponse;
+
   }
 
   /** GET liquid by id. Return `undefined` when id not found */

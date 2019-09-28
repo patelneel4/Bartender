@@ -39,9 +39,8 @@ liquids: Liquid[];
     this.getDrinks();
   }
 
-  getLiquids(): void {
-    this.liquidService.getLiquids()
-    .subscribe(liquids => this.liquids = liquids);
+  async getLiquids() {
+    this.liquids =  await this.liquidService.getLiquids();
   }
 
   async getDrink() {

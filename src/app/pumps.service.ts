@@ -23,13 +23,10 @@ export class PumpsService {
     private messageService: MessageService) { }
 
   /** GET pumps from the server */
-  getPumps (): Observable<Pump[]> {
+  async getPumps (): Promise<Pump[]> {
     const url = `${this.pumpsUrl}/all`;
-    return this.http.get<Pump[]>(url)
-      .pipe(
-        tap(_ => this.log('fetched pumps')),
-        catchError(this.handleError('getPumps', []))
-      );
+    const reponse = await this.http.get<Pump[]>(url).toPromise();
+    return reponse;
   }
 
   /** GET pump by id. Return `undefined` when id not found */
