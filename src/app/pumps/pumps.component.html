@@ -68,7 +68,7 @@
       <!--Row-->
       <td>{{pump.name}}</td>
       <td>{{pump.liquidName}} | {{pump.liquidBrand}}</td>
-      <td>{{pump.flowrate}} ml/s</td>
+      <td>{{pump.flowrate | number : '1.2-2' }}  ml/s</td>
       <td class="vert-aligned">
         <button class="edit" title="Edit Pump" (click)="open(editmodel)">
           <fa name="cog"></fa>
