@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -21,6 +21,7 @@ import { CountdownModule } from 'ngx-countdown';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DrinkCreateComponent } from './drink-create/drink-create.component';
 
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -28,10 +29,10 @@ import { DrinkCreateComponent } from './drink-create/drink-create.component';
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
-    AngularFontAwesomeModule,
     NgxSpinnerModule,
     CountdownModule,
-    BrowserAnimationsModule 
+    BrowserAnimationsModule,
+    FontAwesomeModule 
   ],
   providers: [],
   declarations: [

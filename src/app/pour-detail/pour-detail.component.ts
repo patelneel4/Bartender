@@ -22,7 +22,7 @@ export class PourDetailComponent implements OnInit {
   @Input() pumps: Pump[];
   drink: Drink;
   largestTime: number;
-  @ViewChild('countdown', null) counter: CountdownComponent;
+  @ViewChild('countdown') counter: CountdownComponent;
 
   constructor(private drinkService: DrinkService,
     private modalService: NgbModal,
